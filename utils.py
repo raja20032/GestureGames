@@ -1,7 +1,6 @@
 import numpy as np
 import tensorflow as tf
-import gym
-from time import sleep
+
 
 IS_FULLSCREEN = False
 WIDTH = 520
