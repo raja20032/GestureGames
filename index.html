@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gesture Mario (Web)</title>
+    <link rel="stylesheet" href="./style.css" />
+
+    <!-- MediaPipe Hands (runs fully in the browser) -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+  </head>
+
+  <body>
+    <header class="hero">
+      <div class="heroInner">
+        <div>
+          <h1>SUTD EVENT NAME</h1>
+          <p class="subtitle">subtitle</p>
+        </div>
+        <div class="heroRight">
+          <button id="startBtn" class="primary">Start camera + game</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="gamePanel">
+        <div class="hud">
+          <div class="hudLeft">
+            <span class="pill">Jump: Space / ↑ / Open hand</span>
+            <span id="handStatus" class="pill muted">Hand: not running</span>
+          </div>
+          <div class="hudRight">
+            <span class="pill">Score: <span id="score">0</span></span>
+            <span class="pill">Best: <span id="best">0</span></span>
+          </div>
+        </div>
+
+        <canvas id="gameCanvas" width="960" height="540" aria-label="Game canvas"></canvas>
+
+        <div class="instructions">
+          <div class="instructionsTitle">How to play</div>
+          <ul>
+            <li>Press <kbd>Space</kbd> or <kbd>↑</kbd> to jump.</li>
+            <li>Or show an <strong>open hand</strong> to the camera to jump (cooldown enabled).</li>
+            <li>If your camera doesn’t start, ensure you’re on <strong>https</strong> (Vercel) or <strong>localhost</strong>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <aside class="cameraPanel">
+        <div class="cameraHeader">
+          <div class="cameraTitle">Camera</div>
+          <div class="cameraHint">Used only for hand tracking.</div>
+        </div>
+
+        <div class="cameraWrap">
+          <video id="video" playsinline autoplay muted></video>
+          <canvas id="overlay" width="320" height="240" aria-label="Hand overlay"></canvas>
+        </div>
+
+        <div id="debug" class="debug"></div>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <span>Hosted version: deploy this repo on Vercel as a static site.</span>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
+
+
